@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>זהירות בדרכים - כיתות א'-ג'</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'David', 'Arial Hebrew', 'Guttman Yad', 'FrankRuehl', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        .slide {
+            display: none;
+            width: 90%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideIn 0.5s ease-out;
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: bounce 1s ease-in-out;
+        }
+
+        h2 {
+            color: #764ba2;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            color: #667eea;
+            font-size: 2em;
+            margin: 20px 0;
+        }
+
+        p {
+            font-size: 1.8em;
+            line-height: 1.8;
+            color: #333;
+            margin: 15px 0;
+        }
+
+        .emoji {
+            font-size: 1.5em;
+            margin: 0 10px;
+        }
+
+        .quiz-container {
+            background: #f0f4ff;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .quiz-question {
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .quiz-option {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.5em;
+            border: 3px solid #ddd;
+            transition: all 0.3s;
+        }
+
+        .quiz-option:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.05);
+            border-color: #667eea;
+        }
+
+        .quiz-option.correct {
+            background: #4caf50;
+            color: white;
+            border-color: #4caf50;
+        }
+
+        .quiz-option.wrong {
+            background: #f44336;
+            color: white;
+            border-color: #f44336;
+        }
+
+        .feedback {
+            font-size: 2em;
+            margin-top: 20px;
+            font-weight: bold;
+            min-height: 60px;
+        }
+
+        .feedback.correct {
+            color: #4caf50;
+        }
+
+        .feedback.wrong {
+            color: #f44336;
+        }
+
+        .task-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 5px solid #f39c12;
+        }
+
+        .task-title {
+            font-size: 2.5em;
+            color: #d63031;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .task-content {
+            font-size: 1.8em;
+            color: #2d3436;
+            line-height: 1.8;
+        }
+
+        .rules-list {
+            text-align: right;
+            font-size: 1.6em;
+            line-height: 2;
+            margin: 20px 0;
+        }
+
+        .rules-list li {
+            margin: 15px 0;
+            padding-right: 20px;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.3em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255,255,255,0.9);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.2em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .icon-large {
+            font-size: 5em;
+            margin: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .safety-tip {
+            background: #e8f5e9;
+            padding: 25px;
+            border-radius: 10px;
+            border-right: 5px solid #4caf50;
+            margin: 20px 0;
+            font-size: 1.6em;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">15</span>
+    </div>
+
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="icon-large">🚦</div>
+            <h1>זְהִירוּת בַּדְּרָכִים</h1>
+            <h2>בּוֹאוּ נִלְמַד לִהְיוֹת בְּטוּחִים!</h2>
+            <p style="font-size: 2em; margin-top: 40px; color: #667eea;">
+                מַצְגֶּת מְיֻחֶדֶת לְכִיתּוֹת א'-ג'
+            </p>
+        </div>
+
+        <!-- Slide 2: Introduction -->
+        <div class="slide">
+            <h2>שָׁלוֹם יְלָדִים! 👋</h2>
+            <p>בּוֹאוּ נֵצֵא לְמַסַּע מְרַתֵּק</p>
+            <p>וְלִלְמֹד יַחַד אֵיךְ לִהְיוֹת</p>
+            <p class="highlight" style="font-size: 2.5em; margin: 30px 0;">בְּטוּחִים בַּדְּרָכִים!</p>
+            <div class="icon-large">🚸</div>
+            <p style="font-size: 1.5em; color: #667eea; margin-top: 30px;">
+                הַיּוֹם נִלְמַד כְּלָלִים חֲשׁוּבִים<br>
+                וְנֵהָנֶה מחִידוֹנִים וּמְשִׂימוֹת!
+            </p>
+        </div>
+
+        <!-- Slide 3: Why is it important -->
+        <div class="slide">
+            <h2>לָמָּה זֶה כָּל כָּךְ חָשׁוּב? 🤔</h2>
+            <div class="safety-tip">
+                <p>הַדְּרָכִים יְכוֹלוֹת לִהְיוֹת מְסֻכָּנוֹת</p>
+                <p>אֲבָל אִם נֵדַע אֶת הַכְּלָלִים -</p>
+                <p style="color: #4caf50; font-weight: bold; font-size: 1.2em;">
+                    נִהְיֶה בְּטוּחִים וּמוּגָּנִים!
+                </p>
+            </div>
+            <div style="margin-top: 40px;">
+                <p class="emoji">🚗</p>
+                <p>מְכוֹנִיּוֹת נוֹסְעוֹת מַהֵר</p>
+                <p class="emoji">🚶</p>
+                <p>אֲנַחְנוּ הוֹלְכִים לְאַט</p>
+                <p class="emoji">⚡</p>
+                <p>צָרִיךְ לִהְיוֹת זְהִירִים!</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Rule 1 - Crosswalk -->
+        <div class="slide">
+            <h2>כְּלָל מִסְפָּר 1: מַעֲבַר חֲצִיָּה 🚸</h2>
+            <div class="icon-large">🚸</div>
+            <div class="safety-tip">
+                <h3>אֵיךְ חוֹצִים אֶת הַכְּבִישׁ?</h3>
+                <ul class="rules-list">
+                    <li>✅ עוֹצְרִים לִפְנֵי מַעֲבַר הַחֲצִיָּה</li>
+                    <li>✅ מַסְתַּכְּלִים יָמִינָה וּשְׂמֹאלָה</li>
+                    <li>✅ מַסְתַּכְּלִים שׁוּב יָמִינָה</li>
+                    <li>✅ רַק כְּשֶׁאֵין מְכוֹנִיּוֹת - חוֹצִים!</li>
+                    <li>✅ הוֹלְכִים מַהֵר אֲבָל לֹא רָצִים</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 5: Rule 2 - Traffic Lights -->
+        <div class="slide">
+            <h2>כְּלָל מִסְפָּר 2: רַמְזוֹר 🚦</h2>
+            <div style="display: flex; justify-content: space-around; margin: 40px 0;">
+                <div>
+                    <div style="font-size: 5em;">🔴</div>
+                    <p style="font-size: 1.8em; font-weight: bold; color: #f44336;">עֲצֹר!</p>
+                    <p>אָסוּר לַחֲצוֹת</p>
+                </div>
+                <div>
+                    <div style="font-size: 5em;">🟢</div>
+                    <p style="font-size: 1.8em; font-weight: bold; color: #4caf50;">לֵךְ!</p>
+                    <p>מֻתָּר לַחֲצוֹת</p>
+                </div>
+            </div>
+            <div class="safety-tip">
+                <p style="font-size: 1.8em; font-weight: bold;">
+                    תָּמִיד לְחַכּוֹת לַיָּרֹק! 🟢
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Rule 3 - Sidewalk -->
+        <div class="slide">
+            <h2>כְּלָל מִסְפָּר 3: מִדְרָכָה 🚶</h2>
+            <div class="icon-large">🚶</div>
+            <div class="safety-tip">
+                <h3>כְּשֶׁאֲנַחְנוּ הוֹלְכִים בְּרֶגֶל:</h3>
+                <ul class="rules-list">
+                    <li>✅ הוֹלְכִים רַק עַל הַמִּדְרָכָה</li>
+                    <li>✅ לֹא עַל הַכְּבִישׁ!</li>
+                    <li>✅ אִם אֵין מִדְרָכָה - הוֹלְכִים בְּצַד שְׂמֹאל שֶׁל הַכְּבִישׁ</li>
+                    <li>✅ הוֹלְכִים עִם מְבֻגָּר אַחְרָאִי</li>
+                    <li>✅ לֹא מְשַׂחֲקִים לְיַד הַכְּבִישׁ</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 7: Rule 4 - Seatbelt -->
+        <div class="slide">
+            <h2>כְּלָל מִסְפָּר 4: חֲגוֹרַת בְּטִיחוּת 🚗</h2>
+            <div class="icon-large">🚗</div>
+            <div class="safety-tip">
+                <h3>כְּשֶׁנוֹסְעִים בְּמְכוֹנִית:</h3>
+                <ul class="rules-list">
+                    <li>✅ תָּמִיד חוֹגְרִים חֲגוֹרַת בְּטִיחוּת</li>
+                    <li>✅ יוֹשְׁבִים בַּמּוֹשָׁב הָאֲחוֹרִי</li>
+                    <li>✅ לֹא קוֹפְצִים וְלֹא מִשְׁתּוֹלְלִים</li>
+                    <li>✅ לֹא פּוֹתְחִים דְּלָתוֹת בִּזְמַן נְסִיעָה</li>
+                    <li>✅ יוֹצְאִים רַק מֵהַדֶּלֶת הַקְּרוֹבָה לַמִּדְרָכָה</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 8: Rule 5 - Bicycle -->
+        <div class="slide">
+            <h2>כְּלָל מִסְפָּר 5: אוֹפַנַּיִם 🚲</h2>
+            <div class="icon-large">🚲</div>
+            <div class="safety-tip">
+                <h3>כְּשֶׁאֲנַחְנוּ רוֹכְבִים עַל אוֹפַנַּיִם:</h3>
+                <ul class="rules-list">
+                    <li>✅ תָּמִיד חוֹבְשִׁים קַסְדָּה!</li>
+                    <li>✅ רוֹכְבִים רַק בִּמְקוֹמוֹת מֻתָּרִים</li>
+                    <li>✅ לֹא רוֹכְבִים עַל הַכְּבִישׁ עַד גִּיל 16</li>
+                    <li>✅ מַסְתַּכְּלִים הֵיטֵב לִפְנֵי שֶׁפּוֹנִים</li>
+                    <li>✅ לֹא רוֹכְבִים בַּחֹשֶׁךְ בְּלִי אוֹרוֹת</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 9: Quiz 1 -->
+        <div class="slide">
+            <h2>חִידוֹן 1: בּוֹאוּ נִבְדֹּק מַה לָּמַדְנוּ! 🎯</h2>
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    אֵיךְ צָרִיךְ לַחֲצוֹת אֶת הַכְּבִישׁ?
+                </div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        א. רָצִים מַהֵר מְאֹד
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">
+                        ב. עוֹצְרִים, מַסְתַּכְּלִים יָמִינָה וּשְׂמֹאלָה, וְאָז חוֹצִים
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        ג. חוֹצִים בְּלִי לְהַסְתַּכֵּל
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        ד. רַק רָצִים
+                    </div>
+                </div>
+                <div class="feedback" id="feedback1"></div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Quiz 2 -->
+        <div class="slide">
+            <h2>חִידוֹן 2: רַמְזוֹר 🚦</h2>
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    מַה עוֹשִׂים כְּשֶׁרוֹאִים רַמְזוֹר אָדֹם?
+                </div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        א. רָצִים מַהֵר לַחֲצוֹת
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">
+                        ב. עוֹצְרִים וּמְחַכִּים לַיָּרֹק
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        ג. חוֹצִים בְּכָל מִקְרֶה
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        ד. לֹא מַסְתַּכְּלִים עַל הָרַמְזוֹר
+                    </div>
+                </div>
+                <div class="feedback" id="feedback2"></div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Quiz 3 -->
+        <div class="slide">
+            <h2>חִידוֹן 3: אוֹפַנַּיִם 🚲</h2>
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    מַה חוֹבָה לַעֲשׂוֹת כְּשֶׁנוֹסְעִים עַל אוֹפַנַּיִם?
+                </div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        א. לֹא צָרִיךְ כְּלוּם
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">
+                        ב. חוֹבְשִׁים קַסְדָּה
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        ג. רוֹכְבִים מַהֵר מְאֹד
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        ד. רוֹכְבִים עַל הַכְּבִישׁ
+                    </div>
+                </div>
+                <div class="feedback" id="feedback3"></div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Quiz 4 -->
+        <div class="slide">
+            <h2>חִידוֹן 4: מְכוֹנִית 🚗</h2>
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    אֵיפֹה צָרִיךְ לָשֶׁבֶת כְּשֶׁנוֹסְעִים בְּמְכוֹנִית?
+                </div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        א. בַּמּוֹשָׁב הַקַּדְמִי
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">
+                        ב. בַּמּוֹשָׁב הָאֲחוֹרִי עִם חֲגוֹרַת בְּטִיחוּת
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        ג. עַל הָרִצְפָּה
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        ד. בַּחוּץ
+                    </div>
+                </div>
+                <div class="feedback" id="feedback4"></div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Summary Task -->
+        <div class="slide">
+            <h2>מְשִׂימַת סִכּוּם יְצִירָתִית! 🎨</h2>
+            <div class="task-box">
+                <div class="task-title">הַמְּשִׂימָה שֶׁלָּכֶם:</div>
+                <div class="task-content">
+                    <p style="margin-bottom: 20px;">
+                        <strong>צִרְאוּ פּוֹסְטֶר אוֹ צִיּוּר</strong> שֶׁמַּצִּיג אֶת הַכְּלָלִים שֶׁלָּמַדְנוּ!
+                    </p>
+                    <p style="margin: 15px 0;">
+                        📝 <strong>מַה צָרִיךְ לִהְיוֹת בַּפּוֹסְטֶר?</strong>
+                    </p>
+                    <ul class="rules-list" style="text-align: right;">
+                        <li>🎨 צִיּוּר יָפֶה וּצְבָעוֹנִי</li>
+                        <li>🚦 לְפָחוֹת 3 כְּלָלֵי בְּטִיחוּת</li>
+                        <li>✏️ כְּתִיבָה בְּרוּרָה (אֶפְשָׁר עִם עֶזְרַת מְבֻגָּר)</li>
+                        <li>💡 רַעְיוֹן יְצִירָתִי מִשֶּׁלָּכֶם!</li>
+                    </ul>
+                    <p style="margin-top: 30px; font-size: 1.5em; color: #d63031;">
+                        אֶפְשָׁר לְצַיֵּר, לִגְזֹר, לְהַדְבִּיק, אוֹ לִיצֹר דֶּגֶם תְּלַת-מְמַדִּי!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Task Examples -->
+        <div class="slide">
+            <h2>רַעְיוֹנוֹת לַמְּשִׂימָה 💡</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0;">
+                <div class="safety-tip">
+                    <h3>🎨 אֶפְשָׁרוּת 1: פּוֹסְטֶר</h3>
+                    <p>הֵכִינוּ פּוֹסְטֶר גָּדוֹל עִם כָּל הַכְּלָלִים</p>
+                </div>
+                <div class="safety-tip">
+                    <h3>📚 אֶפְשָׁרוּת 2: סְפָרוֹן</h3>
+                    <p>הֵכִינוּ סְפָרוֹן קָטָן עִם סִפּוּר עַל זְהִירוּת בַּדְּרָכִים</p>
+                </div>
+                <div class="safety-tip">
+                    <h3>🎭 אֶפְשָׁרוּת 3: הַצָּגָה</h3>
+                    <p>הֵכִינוּ הַצָּגָה קְצָרָה עַל כְּלָלֵי הַבְּטִיחוּת</p>
+                </div>
+                <div class="safety-tip">
+                    <h3>🏗️ אֶפְשָׁרוּת 4: דֶּגֶם</h3>
+                    <p>בְּנוּ דֶּגֶם שֶׁל רְחוֹב עִם רַמְזוֹרִים וּמַעֲבָרֵי חֲצִיָּה</p>
+                </div>
+            </div>
+            <p style="font-size: 1.8em; color: #667eea; margin-top: 30px;">
+                כָּל רַעְיוֹן יְצִירָתִי הוּא מְצֻיָּן! 🌟
+            </p>
+        </div>
+
+        <!-- Slide 15: Final -->
+        <div class="slide">
+            <div class="icon-large">🎉</div>
+            <h1>כָּל הַכָּבוֹד! 👏</h1>
+            <h2>לָמַדְתֶּם הַרְבֵּה הַיּוֹם!</h2>
+            <div class="safety-tip" style="margin: 40px 0;">
+                <p style="font-size: 2em; margin: 20px 0;">
+                    זִכְרוּ תָּמִיד:
+                </p>
+                <p style="font-size: 1.8em; color: #4caf50; font-weight: bold;">
+                    זְהִירוּת בַּדְּרָכִים = בְּטִיחוּת שֶׁלָּנוּ! 🛡️
+                </p>
+            </div>
+            <p style="font-size: 1.8em; margin-top: 40px;">
+                שִׁמְרוּ עַל עַצְמְכֶם<br>
+                וְשִׁמְרוּ עַל הַחֲבֵרִים שֶׁלָּכֶם! 💙
+            </p>
+            <div style="font-size: 4em; margin-top: 30px;">
+                🚦🚸🚗🚲✅
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()" id="prevBtn"> →הקודם</button>
+        <button class="nav-btn" onclick="nextSlide()" id="nextBtn">הבא ←</button>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            currentSlideIndex = index;
+            
+            document.getElementById('current-slide').textContent = index + 1;
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < totalSlides - 1) {
+                showSlide(currentSlideIndex + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlideIndex > 0) {
+                showSlide(currentSlideIndex - 1);
+            }
+        }
+
+        function checkAnswer(element, isCorrect) {
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            const feedback = element.parentElement.parentElement.querySelector('.feedback');
+            
+            // Disable all options
+            options.forEach(opt => {
+                opt.style.pointerEvents = 'none';
+            });
+            
+            if (isCorrect) {
+                element.classList.add('correct');
+                feedback.textContent = '🎉 מְעֻלֶּה! תְּשׁוּבָה נְכוֹנָה!';
+                feedback.classList.add('correct');
+                feedback.classList.remove('wrong');
+            } else {
+                element.classList.add('wrong');
+                // Find and highlight correct answer
+                options.forEach(opt => {
+                    if (opt.onclick.toString().includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+                feedback.textContent = '❌ לֹא נָכוֹן, אֲבָל לֹא נוֹרָא! נַסּוּ שׁוּב בַּפַּעַם הַבָּאָה!';
+                feedback.classList.add('wrong');
+                feedback.classList.remove('correct');
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                previousSlide();
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
+
