@@ -262,6 +262,429 @@
             margin: 20px 0;
             font-size: 1.6em;
         }
+
+        .task-examples-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .traffic-lights-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .traffic-light-item {
+            text-align: center;
+        }
+
+        .traffic-light-emoji {
+            font-size: 5em;
+        }
+
+        .traffic-light-text {
+            font-size: 1.8em;
+        }
+
+        .final-emojis {
+            font-size: 4em;
+            margin-top: 30px;
+        }
+
+        /* Responsive Design - Media Queries */
+        
+        /* Large screens (desktops) - default styles already set */
+        
+        /* Tablets and small desktops */
+        @media (max-width: 1024px) {
+            .slide {
+                width: 95%;
+                padding: 50px 40px;
+            }
+            
+            h1 {
+                font-size: 3em;
+            }
+            
+            h2 {
+                font-size: 2.2em;
+            }
+            
+            h3 {
+                font-size: 1.8em;
+            }
+            
+            p {
+                font-size: 1.6em;
+            }
+        }
+        
+        /* Tablets */
+        @media (max-width: 768px) {
+            .presentation-container {
+                padding: 30px 15px;
+            }
+            
+            .slide {
+                width: 98%;
+                padding: 40px 30px;
+                border-radius: 15px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+                margin-bottom: 20px;
+            }
+            
+            h2 {
+                font-size: 2em;
+                margin-bottom: 20px;
+            }
+            
+            h3 {
+                font-size: 1.6em;
+                margin: 15px 0;
+            }
+            
+            p {
+                font-size: 1.4em;
+                line-height: 1.6;
+                margin: 12px 0;
+            }
+            
+            .icon-large {
+                font-size: 4em;
+                margin: 15px;
+            }
+            
+            .quiz-container {
+                padding: 25px;
+            }
+            
+            .quiz-question {
+                font-size: 1.6em;
+            }
+            
+            .quiz-options {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .quiz-option {
+                padding: 18px;
+                font-size: 1.3em;
+            }
+            
+            .feedback {
+                font-size: 1.6em;
+                min-height: 50px;
+            }
+            
+            .task-box {
+                padding: 30px;
+            }
+            
+            .task-title {
+                font-size: 2em;
+            }
+            
+            .task-content {
+                font-size: 1.5em;
+            }
+            
+            .rules-list {
+                font-size: 1.4em;
+            }
+            
+            .safety-tip {
+                padding: 20px;
+                font-size: 1.4em;
+            }
+            
+            .nav-btn {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+            
+            .slide-counter {
+                top: 20px;
+                right: 20px;
+                padding: 8px 16px;
+                font-size: 1em;
+            }
+            
+            .navigation {
+                bottom: 20px;
+                gap: 15px;
+            }
+            
+            .task-examples-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .traffic-lights-container {
+                margin: 30px 0;
+            }
+            
+            .traffic-light-emoji {
+                font-size: 4em;
+            }
+            
+            .traffic-light-text {
+                font-size: 1.5em;
+            }
+            
+            .final-emojis {
+                font-size: 3em;
+                margin-top: 25px;
+            }
+        }
+        
+        /* Mobile phones */
+        @media (max-width: 480px) {
+            .presentation-container {
+                padding: 20px 10px;
+            }
+            
+            .slide {
+                width: 100%;
+                padding: 25px 20px;
+                border-radius: 10px;
+                margin: 10px auto;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 15px;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+                margin-bottom: 15px;
+            }
+            
+            h3 {
+                font-size: 1.3em;
+                margin: 12px 0;
+            }
+            
+            p {
+                font-size: 1.1em;
+                line-height: 1.5;
+                margin: 10px 0;
+            }
+            
+            .icon-large {
+                font-size: 3em;
+                margin: 10px;
+            }
+            
+            .emoji {
+                font-size: 1.2em;
+                margin: 0 5px;
+            }
+            
+            .quiz-container {
+                padding: 20px 15px;
+                border-radius: 10px;
+            }
+            
+            .quiz-question {
+                font-size: 1.3em;
+                margin-bottom: 15px;
+            }
+            
+            .quiz-options {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin: 15px 0;
+            }
+            
+            .quiz-option {
+                padding: 15px;
+                font-size: 1.1em;
+                border-radius: 8px;
+            }
+            
+            .quiz-option:hover {
+                transform: scale(1.02);
+            }
+            
+            .feedback {
+                font-size: 1.2em;
+                margin-top: 15px;
+                min-height: 40px;
+            }
+            
+            .task-box {
+                padding: 20px;
+                border-radius: 10px;
+                margin: 20px 0;
+                border-width: 3px;
+            }
+            
+            .task-title {
+                font-size: 1.5em;
+                margin-bottom: 15px;
+            }
+            
+            .task-content {
+                font-size: 1.2em;
+            }
+            
+            .task-content p {
+                font-size: 1.1em;
+            }
+            
+            .rules-list {
+                font-size: 1.1em;
+                line-height: 1.6;
+                margin: 15px 0;
+            }
+            
+            .rules-list li {
+                margin: 10px 0;
+                padding-right: 15px;
+            }
+            
+            .safety-tip {
+                padding: 15px;
+                font-size: 1.1em;
+                margin: 15px 0;
+            }
+            
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 1em;
+                border-radius: 30px;
+            }
+            
+            .navigation {
+                bottom: 15px;
+                left: 50%;
+                gap: 10px;
+                width: 90%;
+                max-width: 400px;
+            }
+            
+            .slide-counter {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 0.9em;
+                border-radius: 15px;
+            }
+            
+            .highlight {
+                padding: 3px 10px;
+            }
+            
+            /* Adjust inline styles for mobile */
+            .slide p[style*="font-size: 2em"] {
+                font-size: 1.3em !important;
+            }
+            
+            .slide p[style*="font-size: 2.5em"] {
+                font-size: 1.5em !important;
+            }
+            
+            .slide p[style*="font-size: 1.5em"] {
+                font-size: 1.1em !important;
+            }
+            
+            .slide p[style*="font-size: 1.8em"] {
+                font-size: 1.2em !important;
+            }
+            
+            /* Traffic lights slide adjustments */
+            .traffic-lights-container {
+                flex-direction: column;
+                gap: 20px;
+                margin: 30px 0 !important;
+            }
+            
+            .traffic-light-emoji {
+                font-size: 3em !important;
+            }
+            
+            .traffic-light-text {
+                font-size: 1.3em !important;
+            }
+            
+            /* Task examples grid */
+            .task-examples-grid {
+                grid-template-columns: 1fr !important;
+                gap: 15px !important;
+                margin: 20px 0 !important;
+            }
+            
+            /* Final slide emoji size */
+            .final-emojis {
+                font-size: 2.5em !important;
+                margin-top: 20px !important;
+            }
+        }
+        
+        /* Very small phones */
+        @media (max-width: 360px) {
+            .slide {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            h2 {
+                font-size: 1.3em;
+            }
+            
+            p {
+                font-size: 1em;
+            }
+            
+            .quiz-question {
+                font-size: 1.2em;
+            }
+            
+            .quiz-option {
+                font-size: 1em;
+                padding: 12px;
+            }
+            
+            .nav-btn {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+        
+        /* Landscape orientation for mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .slide {
+                padding: 30px 25px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            h2 {
+                font-size: 1.6em;
+            }
+            
+            .icon-large {
+                font-size: 3.5em;
+            }
+            
+            .navigation {
+                bottom: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -332,21 +755,21 @@
         <!-- Slide 5: Rule 2 - Traffic Lights -->
         <div class="slide">
             <h2>כְּלָל מִסְפָּר 2: רַמְזוֹר 🚦</h2>
-            <div style="display: flex; justify-content: space-around; margin: 40px 0;">
-                <div>
-                    <div style="font-size: 5em;">🔴</div>
-                    <p style="font-size: 1.8em; font-weight: bold; color: #f44336;">עֲצֹר!</p>
+            <div class="traffic-lights-container">
+                <div class="traffic-light-item">
+                    <div class="traffic-light-emoji">🔴</div>
+                    <p class="traffic-light-text" style="font-weight: bold; color: #f44336;">עֲצֹר!</p>
                     <p>אָסוּר לַחֲצוֹת</p>
                 </div>
-                <div>
-                    <div style="font-size: 5em;">🟢</div>
-                    <p style="font-size: 1.8em; font-weight: bold; color: #4caf50;">לֵךְ!</p>
+                <div class="traffic-light-item">
+                    <div class="traffic-light-emoji">🟢</div>
+                    <p class="traffic-light-text" style="font-weight: bold; color: #4caf50;">לֵךְ!</p>
                     <p>מֻתָּר לַחֲצוֹת</p>
                 </div>
             </div>
             <div class="safety-tip">
                 <p style="font-size: 1.8em; font-weight: bold;">
-                    תָּמִיד לְחַכּוֹת לַיָּרֹק! 🟢
+                    תָּמִיד לְחַכּוֹת לִירוֹק! 🟢
                 </p>
             </div>
         </div>
@@ -527,7 +950,7 @@
         <!-- Slide 14: Task Examples -->
         <div class="slide">
             <h2>רַעְיוֹנוֹת לַמְּשִׂימָה 💡</h2>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0;">
+            <div class="task-examples-grid">
                 <div class="safety-tip">
                     <h3>🎨 אֶפְשָׁרוּת 1: פּוֹסְטֶר</h3>
                     <p>הֵכִינוּ פּוֹסְטֶר גָּדוֹל עִם כָּל הַכְּלָלִים</p>
@@ -567,7 +990,7 @@
                 שִׁמְרוּ עַל עַצְמְכֶם<br>
                 וְשִׁמְרוּ עַל הַחֲבֵרִים שֶׁלָּכֶם! 💙
             </p>
-            <div style="font-size: 4em; margin-top: 30px;">
+            <div class="final-emojis">
                 🚦🚸🚗🚲✅
             </div>
         </div>
